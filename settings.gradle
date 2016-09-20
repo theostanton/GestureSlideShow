@@ -1,1 +1,1 @@
-include ':app', ':gestureslideshow'
+include ':gestureslideshow', ':gestureslideshowsample', ':gestureslideshowpicasso'
