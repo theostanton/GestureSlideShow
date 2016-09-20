@@ -314,7 +314,7 @@ public class GestureImageView extends ImageView {
 
     @Override
     protected void onDraw(Canvas canvas) {
-        Log.d(TAG,"onDraw " + this.toString());
+//        Log.d(TAG,"onDraw " + this.toString());
         if (layout) {
             if (drawable != null && !isRecycled()) {
                 canvas.save();

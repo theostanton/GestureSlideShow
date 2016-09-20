@@ -14,6 +14,10 @@ compile 'com.theostanton.gestureslideshow:gestureslideshow:0.1.2'
 compile 'com.theostanton.gestureslideshowpicasso:gestureslideshowpicasso:0.1.2'
 ```
 
+Video
+-----
+
+[![Video on youtube](https://img.youtube.com/vi/wYGH1RMZiOE/0.jpg)](https://youtu.be/wYGH1RMZiOE)
 
 XML
 ---

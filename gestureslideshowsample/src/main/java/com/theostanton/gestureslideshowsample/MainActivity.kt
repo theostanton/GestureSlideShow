@@ -16,15 +16,14 @@ class MainActivity : AppCompatActivity() {
             "http://www.picsymag.com/wp-content/uploads/2016/03/14-3-large.jpg"
     )
 
-    val drawableReses = arrayOf(R.drawable.bfg_1, R.drawable.bfg_2, R.drawable.bfg_3)
+    val drawableReses = intArrayOf(R.drawable.bfg_1, R.drawable.bfg_2, R.drawable.bfg_3)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         val viewPager = find<GestureViewPager>(R.id.viewpager)
-        viewPager.adapter = getCustomImageAdapter()
-        viewPager.currentItem = 2
+        viewPager.adapter = getDrawableResImageAdapter()
     }
 
     fun getDrawableResImageAdapter() = DrawableResImageAdapter(drawableReses)
