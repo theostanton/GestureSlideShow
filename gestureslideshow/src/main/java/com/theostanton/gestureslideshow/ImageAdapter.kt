@@ -11,10 +11,10 @@ import com.theostanton.gestureslideshow.gestureimageview.GestureImageView
  * Created by theostanton on 19/09/2016.
  */
 
-class CustomImageAdapter(val data: Array<Unit>, val imageLoader: ImageLoader) : ImageAdapter() {
+class CustomImageAdapter<T>(val data: Array<T>, val imageLoader: ImageLoader<T>) : ImageAdapter() {
 
     override fun load(imageView: GestureImageView, position: Int) {
-        imageLoader.load(imageView, position)
+        imageLoader.load(imageView, data[position])
     }
 
     override fun getCount() = data.size
@@ -73,6 +73,6 @@ abstract class ImageAdapter : PagerAdapter() {
 
 }
 
-interface ImageLoader {
-    fun load(imageView: GestureImageView, position: Int)
+interface ImageLoader<in T> {
+    fun load(imageView: GestureImageView, item: T)
 }

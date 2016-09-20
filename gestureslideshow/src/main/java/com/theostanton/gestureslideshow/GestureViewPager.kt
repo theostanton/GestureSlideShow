@@ -26,4 +26,12 @@ class GestureViewPager : ViewPager {
         }
         return super.onInterceptTouchEvent(ev)
     }
+
+    override fun setCurrentItem(item: Int) {
+        for(i in 0..childCount) {
+            val child = getChildAt(i) as GestureImageView? ?: break
+            child.reset()
+        }
+        super.setCurrentItem(item)
+    }
 }

@@ -3,9 +3,9 @@ package com.theostanton.gestureslideshowsample
 import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import com.theostanton.gestureslideshow.BitmapImageAdapter
-import com.theostanton.gestureslideshow.DrawableResImageAdapter
-import com.theostanton.gestureslideshow.GestureViewPager
+import com.squareup.picasso.Picasso
+import com.theostanton.gestureslideshow.*
+import com.theostanton.gestureslideshow.gestureimageview.GestureImageView
 import com.theostanton.gestureslideshowpicasso.PicassoImageAdapter
 import org.jetbrains.anko.find
 
@@ -17,27 +17,37 @@ class MainActivity : AppCompatActivity() {
             "http://www.picsymag.com/wp-content/uploads/2016/03/14-3-large.jpg"
     )
 
-    val drawableReses = arrayOf(R.drawable.bfg_1,R.drawable.bfg_2,R.drawable.bfg_3)
+    val drawableReses = arrayOf(R.drawable.bfg_1, R.drawable.bfg_2, R.drawable.bfg_3)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         val viewPager = find<GestureViewPager>(R.id.viewpager)
-        viewPager.adapter = getBitmapImageAdapter()
-        viewPager.currentItem = 2
+        viewPager.adapter = getCustomImageAdapter()
     }
 
     fun getDrawableResImageAdapter() = DrawableResImageAdapter(drawableReses)
 
     fun getPicassoImageAdapter() = PicassoImageAdapter(urls)
 
-    fun getBitmapImageAdapter() : BitmapImageAdapter {
+    fun getBitmapImageAdapter(): BitmapImageAdapter {
         val bitmaps = arrayOf(
-                BitmapFactory.decodeResource(resources,R.drawable.bfg_1),
-                BitmapFactory.decodeResource(resources,R.drawable.bfg_2),
-                BitmapFactory.decodeResource(resources,R.drawable.bfg_3)
+                BitmapFactory.decodeResource(resources, R.drawable.bfg_1),
+                BitmapFactory.decodeResource(resources, R.drawable.bfg_2),
+                BitmapFactory.decodeResource(resources, R.drawable.bfg_3)
         )
         return BitmapImageAdapter(bitmaps)
+    }
+
+    fun getCustomImageAdapter(): CustomImageAdapter<String> {
+        return CustomImageAdapter(urls, imageLoader = AnImageLoader())
+    }
+
+    class AnImageLoader : ImageLoader<String> {
+
+        override fun load(imageView: GestureImageView, item: String) {
+            Picasso.with(imageView.context).load(item).into(imageView)
+        }
     }
 }
