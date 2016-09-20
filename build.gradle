@@ -17,11 +17,16 @@ buildscript {
     }
 }
 
+
+
 allprojects {
     repositories {
         jcenter()
     }
+    tasks.withType(Javadoc).all { enabled = false }
+
 }
+
 
 task clean(type: Delete) {
     delete rootProject.buildDir

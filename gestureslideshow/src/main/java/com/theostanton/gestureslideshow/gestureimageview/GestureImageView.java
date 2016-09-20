@@ -342,12 +342,6 @@ public class GestureImageView extends ImageView {
         }
     }
 
-    /**
-     * Waits for a draw
-     *
-//     * @param max time to wait for draw (ms)
-     * @throws InterruptedException
-     */
     public boolean waitForDraw(long timeout) throws InterruptedException {
         return drawLock.tryAcquire(timeout, TimeUnit.MILLISECONDS);
     }
@@ -558,6 +552,10 @@ public class GestureImageView extends ImageView {
         if (drawable != null) {
             drawable.setColorFilter(cf);
         }
+    }
+
+    public void setImageUrl(String url){
+        setImageURI(Uri.parse(url));
     }
 
     @Override

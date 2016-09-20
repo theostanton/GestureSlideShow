@@ -18,10 +18,14 @@ class CustomImageAdapter<T>(val data: Array<T>, val imageLoader: ImageLoader<T>)
     }
 
     override fun getCount() = data.size
-
 }
 
-class DrawableResImageAdapter(val data: Array<Int>) : ImageAdapter() {
+
+interface ImageLoader<in T> {
+    fun load(imageView: GestureImageView, item: T)
+}
+
+class DrawableResImageAdapter(val data: IntArray) : ImageAdapter() {
 
     override fun load(imageView: GestureImageView, position: Int) {
         imageView.setImageResource(data[position])
@@ -48,6 +52,7 @@ class BitmapImageAdapter(val data: Array<Bitmap>) : ImageAdapter() {
     override fun getCount() = data.size
 }
 
+
 abstract class ImageAdapter : PagerAdapter() {
 
     abstract override fun getCount(): Int
@@ -71,8 +76,4 @@ abstract class ImageAdapter : PagerAdapter() {
         return imageView
     }
 
-}
-
-interface ImageLoader<in T> {
-    fun load(imageView: GestureImageView, item: T)
 }

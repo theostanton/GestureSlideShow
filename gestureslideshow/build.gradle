@@ -15,7 +15,7 @@ ext {
     siteUrl = 'https://github.com/theostanton/gestureslideshow'
     gitUrl = 'https://github.com/theostanton/gestureslideshow.git'
 
-    libraryVersion = '0.1'
+    libraryVersion = '0.1.2'
 
     developerId = 'theostanton'
     developerName = 'Theo Stanton'

@@ -6,7 +6,6 @@ import android.support.v7.app.AppCompatActivity
 import com.squareup.picasso.Picasso
 import com.theostanton.gestureslideshow.*
 import com.theostanton.gestureslideshow.gestureimageview.GestureImageView
-import com.theostanton.gestureslideshowpicasso.PicassoImageAdapter
 import org.jetbrains.anko.find
 
 class MainActivity : AppCompatActivity() {
@@ -30,7 +29,7 @@ class MainActivity : AppCompatActivity() {
 
     fun getDrawableResImageAdapter() = DrawableResImageAdapter(drawableReses)
 
-    fun getPicassoImageAdapter() = PicassoImageAdapter(urls)
+//    fun getPicassoImageAdapter() = PicassoImageAdapter(urls)
 
     fun getBitmapImageAdapter(): BitmapImageAdapter {
         val bitmaps = arrayOf(

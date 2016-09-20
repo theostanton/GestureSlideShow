@@ -31,13 +31,14 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile 'com.android.support:appcompat-v7:24.2.0'
-    testCompile 'junit:junit:4.12'
     compile project(':gestureslideshow')
     compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    compile project(path: ':gestureslideshowpicasso')
+    compile 'com.android.support:appcompat-v7:24.2.0'
     compile 'org.jetbrains.anko:anko-sdk23:0.9'
     compile 'com.squareup.picasso:picasso:2.5.2'
-    compile project(path: ':gestureslideshowpicasso')
+    compile 'com.android.support:design:24.2.0'
+    testCompile 'junit:junit:4.12'
 }
 repositories {
     mavenCentral()
