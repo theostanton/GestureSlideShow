@@ -4,6 +4,9 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
+import com.theostanton.gestureslideshow.ImageAdapter;
+import com.theostanton.gestureslideshow.ImageAdapterKt;
+
 public class JavaMainActivity extends AppCompatActivity {
 
     int[] drawableRes = {R.drawable.bfg_1};
@@ -15,9 +18,7 @@ public class JavaMainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-//        DrawableResImageAdapter adapter = new DrawableResImageAdapter(
-//                new int[]{R.drawable.bfg_1,R.drawable.bfg_2,R.drawable.bfg_3}
-//        );
+        ImageAdapter imageAdapter = ImageAdapterKt.drawableResources(drawableRes);
 
     //        Bitmap bitmap_1,bitmap_2,bitmap_3 = null;
     //

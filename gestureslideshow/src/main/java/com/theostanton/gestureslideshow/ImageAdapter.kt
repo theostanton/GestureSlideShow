@@ -1,3 +1,5 @@
+@file:Suppress("unused")
+
 package com.theostanton.gestureslideshow
 
 import android.graphics.Bitmap
@@ -11,21 +13,21 @@ import com.theostanton.gestureslideshow.gestureimageview.GestureImageView
  * Created by theostanton on 19/09/2016.
  */
 
-class CustomImageAdapter<T>(val data: Array<T>, val imageLoader: ImageLoader<T>) : ImageAdapter() {
 
-    override fun load(imageView: GestureImageView, position: Int) {
-        imageLoader.load(imageView, data[position])
-    }
-
-    override fun getCount() = data.size
+fun drawableResources(vararg drawableResources: Int): DrawableResImageAdapter {
+    return DrawableResImageAdapter(drawableResources)
 }
+
+fun drawables(vararg drawables: Drawable) = DrawableImageAdapter(drawables)
+
+fun bitmaps(vararg bitamps: Bitmap) = BitmapImageAdapter(bitamps)
 
 
 interface ImageLoader<in T> {
     fun load(imageView: GestureImageView, item: T)
 }
 
-class DrawableResImageAdapter(val data: IntArray) : ImageAdapter() {
+class DrawableResImageAdapter internal constructor(val data: IntArray) : ImageAdapter() {
 
     override fun load(imageView: GestureImageView, position: Int) {
         imageView.setImageResource(data[position])
@@ -34,7 +36,7 @@ class DrawableResImageAdapter(val data: IntArray) : ImageAdapter() {
     override fun getCount() = data.size
 }
 
-class DrawableImageAdapter(val data: Array<Drawable>) : ImageAdapter() {
+class DrawableImageAdapter internal constructor(val data: Array<out Drawable>) : ImageAdapter() {
 
     override fun load(imageView: GestureImageView, position: Int) {
         imageView.setImageDrawable(data[position])
@@ -43,7 +45,7 @@ class DrawableImageAdapter(val data: Array<Drawable>) : ImageAdapter() {
     override fun getCount() = data.size
 }
 
-class BitmapImageAdapter(val data: Array<Bitmap>) : ImageAdapter() {
+class BitmapImageAdapter internal constructor(val data: Array<out Bitmap>) : ImageAdapter() {
 
     override fun load(imageView: GestureImageView, position: Int) {
         imageView.setImageBitmap(data[position])
@@ -51,7 +53,6 @@ class BitmapImageAdapter(val data: Array<Bitmap>) : ImageAdapter() {
 
     override fun getCount() = data.size
 }
-
 
 abstract class ImageAdapter : PagerAdapter() {
 
@@ -76,4 +77,14 @@ abstract class ImageAdapter : PagerAdapter() {
         return imageView
     }
 
+}
+
+
+class CustomImageAdapter<T>(val data: Array<T>, val imageLoader: Factory.ImageLoader<T>) : ImageAdapter() {
+
+    override fun load(imageView: GestureImageView, position: Int) {
+        imageLoader.load(imageView, data[position])
+    }
+
+    override fun getCount() = data.size
 }
