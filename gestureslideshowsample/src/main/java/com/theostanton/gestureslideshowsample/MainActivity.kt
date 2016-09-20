@@ -25,6 +25,7 @@ class MainActivity : AppCompatActivity() {
 
         val viewPager = find<GestureViewPager>(R.id.viewpager)
         viewPager.adapter = getCustomImageAdapter()
+        viewPager.currentItem = 2
     }
 
     fun getDrawableResImageAdapter() = DrawableResImageAdapter(drawableReses)
@@ -41,13 +42,11 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun getCustomImageAdapter(): CustomImageAdapter<String> {
-        return CustomImageAdapter(urls, imageLoader = AnImageLoader())
+        return CustomImageAdapter(urls, object : ImageLoader<String> {
+            override fun load(imageView: GestureImageView, item: String) {
+                Picasso.with(imageView.context).load(item).into(imageView)
+            }
+        })
     }
 
-    class AnImageLoader : ImageLoader<String> {
-
-        override fun load(imageView: GestureImageView, item: String) {
-            Picasso.with(imageView.context).load(item).into(imageView)
-        }
-    }
 }
