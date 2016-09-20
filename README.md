@@ -14,8 +14,24 @@ compile 'com.theostanton.gestureslideshow:gestureslideshow:0.1.2'
 compile 'com.theostanton.gestureslideshowpicasso:gestureslideshowpicasso:0.1.2'
 ```
 
+
+XML
+---
+
+Must use a GestureViewPager in layout
+
+```xml
+<com.theostanton.gestureslideshow.GestureViewPager
+        android:id="@+id/viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+```
+
 Adapters
 --------
+
+And then any of the following adapters
+
 
 ### DrawableResImageAdapter
 
@@ -47,3 +63,5 @@ CustomImageAdapter<String> adapter = new CustomImageAdapter<>(
     }
 );
 ```
+
+
